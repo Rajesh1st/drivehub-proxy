@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  drivehub-proxy:
+    build: .
+    container_name: drivehub-proxy
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - DEFAULT_TARGET=https://onlykdrama.shop/
+      - HEADLESS=true
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./cache:/app/cache
+    command: python app.py
